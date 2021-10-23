@@ -28,55 +28,55 @@
                 <c:param name="destino" value="index.jsp"/>
             </c:redirect>
         </c:if>    
-        <c:set var = "empId" value = "${param.id}"/>
+        <c:set var = "libId" value = "${param.id}"/>
         
         
         <h3>Observe que el registro a borrar se marca de color rojo en la primera tabla y que en la segunda tabla ya no aparece</h3>
         <sql:query dataSource = "${fuenteDatos}" var = "result">
-            SELECT * from Employees;
+            SELECT * from libros;
         </sql:query>
             
         <table border = "1" width = "100%">
             <tr>
-                <th>Emp ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
+                <th>Libro ID</th>
+                <th>ISB Name</th>
+                <th>Titulo Name</th>
+                <th>Autor</th>
             </tr>
 
             <c:forEach var = "row" items = "${result.rows}">
                 <tr class="fila${row.id}">
                     <td><c:out value = "${row.id}"/></td>
-                    <td><c:out value = "${row.first}"/></td>
-                    <td><c:out value = "${row.last}"/></td>
-                    <td><c:out value = "${row.age}"/></td>
+                    <td><c:out value = "${row.isb}"/></td>
+                    <td><c:out value = "${row.titulo}"/></td>
+                    <td><c:out value = "${row.autor}"/></td>
                 </tr>
             </c:forEach>
         </table>        
         
         <sql:update dataSource = "${fuenteDatos}" var = "count">
-            DELETE FROM Employees WHERE Id = ?
-            <sql:param value = "${empId}" />
+            DELETE FROM libros WHERE Id = ?
+            <sql:param value = "${libId}" />
         </sql:update>
 
         <sql:query dataSource = "${fuenteDatos}" var = "result">
-            SELECT * from Employees;
+            SELECT * from libros;
         </sql:query>
             <h3>Favor verifique que el registro ha sido borrado con éxito</h3>
         <table border = "1" width = "100%">
             <tr>
-                <th>Emp ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
+                <th>Lirbo ID</th>
+                <th>ISB</th>
+                <th>Titulo</th>
+                <th>Autor</th>
             </tr>
 
             <c:forEach var = "row" items = "${result.rows}">
                 <tr>
                     <td><c:out value = "${row.id}"/></td>
-                    <td><c:out value = "${row.first}"/></td>
-                    <td><c:out value = "${row.last}"/></td>
-                    <td><c:out value = "${row.age}"/></td>
+                    <td><c:out value = "${row.isb}"/></td>
+                    <td><c:out value = "${row.titulo}"/></td>
+                    <td><c:out value = "${row.autor}"/></td>
                 </tr>
             </c:forEach>
         </table>    

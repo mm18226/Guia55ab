@@ -16,10 +16,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>REALIZAR UNA CONSULTA EN LA TABLA.</title>
         <script>
-            function actualizar(id, last)
+            function actualizar(id, titulo)
             {
-                var nlast = prompt("Ingrese el apellido que reemplaza el actual apellido(" + last + ")");
-                location.href = "actualizar.jsp?id=" + id + "&last=" + last + "&nlast=" + nlast;
+                var ntitulo = prompt("Ingrese el titulo que reemplaza el actual titulo(" + titulo + ")");
+                location.href = "actualizar.jsp?id=" + id + "&titulo=" + titulo + "&ntitulo=" + ntitulo;
             }
             function eliminar(id)
             {
@@ -34,23 +34,23 @@
     </head>
     <body>
         <%@ include file="header.jsp" %>
-        <h1>REALIZAR UNA CONSULTA EN LA TABLA , ACTUALIZAR (apellido) O ELIMINAR UN REGISTRO (id).</h1>
+        <h1>REALIZAR UNA CONSULTA EN LA TABLA , ACTUALIZAR (titulo) O ELIMINAR UN REGISTRO (id).</h1>
         <p style="color:darkblue;font-weight:bold;">Instrucciones: 
             <br>
             1. Para eliminar , de click sobre el id de la fila que desea eliminar<br>
-            2. Para actualizar, de click sobre el apellido en la fila que desea actualizar(deberá ingresar el nuevo apellido)
+            2. Para actualizar, de click sobre el titulo en la fila que desea actualizar(deberá ingresar el nuevo titulo)
         </p>
 
         <sql:query dataSource = "${fuenteDatos}" var = "result">
-            SELECT * from employees;
+            SELECT * from libros;
         </sql:query>
 
         <table border = "1" width = "100%">
             <tr>
-                <th>Emp ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
+                <th>Libro ID</th>
+                <th>ISB</th>
+                <th>Titulo</th>
+                <th>Autor</th>
             </tr>
 
             <c:forEach var = "row" items = "${result.rows}">
@@ -60,13 +60,13 @@
                         onmouseout="this.style.backgroundColor='white';">
                         <c:out value = "${row.id}"/>
                     </td>
-                    <td><c:out value = "${row.first}"/></td>
-                    <td onclick="actualizar('${row.id}', '${row.last}');"  
+                    <td><c:out value = "${row.isb}"/></td>
+                    <td onclick="actualizar('${row.id}', '${row.titulo}');"  
                         onmouseover="this.style.backgroundColor='green';"
                         onmouseout="this.style.backgroundColor='white';">
-                        <c:out value = "${row.last}"/>
+                        <c:out value = "${row.titulo}"/>
                     </td>
-                    <td><c:out value = "${row.age}"/></td>
+                    <td><c:out value = "${row.autor}"/></td>
                 </tr>
             </c:forEach>
         </table>

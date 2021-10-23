@@ -2,10 +2,10 @@
 <table border="1" width="100%" style="text-align: center;">
     <tr>
         <td>
-            APP EJEMPLO
+            APP Grupo: 01
         </td>
         <td>
-            SISTEMA DE REGISTRO DE PERSONAS<br>
+            SISTEMA DE REGISTRO DE LIBROS<br>
             <b style="color:red;">${sessionScope.nombre}</b>
         </td>
         <td>

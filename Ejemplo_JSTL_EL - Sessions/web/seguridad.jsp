@@ -35,7 +35,7 @@
                 <c:param name="logeado" value="yes"/>
             </c:redirect>
         </c:when>       
-        <c:when test="${pageId eq 'Eliminar' and sessionScope.nivel != 3}">
+        <c:when test="${pageId eq 'Eliminar' and sessionScope.nivel != 2}">
             <c:redirect url='recepcion.jsp'>
                 <c:param name="operacion" value="${pageId}"/>
                 <c:param name="logeado" value="yes"/>

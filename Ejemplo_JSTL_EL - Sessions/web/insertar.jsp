@@ -19,43 +19,36 @@
     <body>
         <%@ include file="header.jsp" %>
         <h1>INSERTAR UN REGISTRO EN LA TABLA</h1>
-        <p>*observe que en la tabla el registr agregado se marca con fondo verde</p>
-        <c:if test="${empty param.age or empty param.first or empty param.last or empty param.xage}">
+        <c:if test="${empty param.isb or empty param.titulo or empty param.autor}">
             <c:redirect url="error.jsp">
                 <c:param name="tipo" value="parametro"/>
                 <c:param name="destino" value="index.jsp"/>
             </c:redirect>
         </c:if>
         <sql:update dataSource = "${fuenteDatos}" var = "result">
-            INSERT INTO employees (age,first,last)  VALUES (?, 'Anonimo', 'Ali');
-            <sql:param value="${param.xage}"/>
-        </sql:update>
-
-
-        <sql:update dataSource = "${fuenteDatos}" var = "result">
-            INSERT INTO employees (age,first,last) VALUES (?,?,?);
-            <sql:param value="${param.age}"/>
-            <sql:param value="${param.first}"/>
-            <sql:param value="${param.last}"/>                
+            INSERT INTO libros (autor,isb,titulo) VALUES (?,?,?);
+            <sql:param value="${param.autor}"/>
+            <sql:param value="${param.isb}"/>
+            <sql:param value="${param.titulo}"/>                
         </sql:update>
 
         <sql:query dataSource = "${fuenteDatos}" var = "result">
-            SELECT * from Employees;
+            SELECT * from Libros;
         </sql:query>        
         <table border = "1" width = "100%">
             <tr>
-                <th>Emp ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
+                <th>Libro ID</th>
+                <th>ISB Name</th>
+                <th>Titulo Name</th>
+                <th>Autor</th>
             </tr>
 
             <c:forEach var = "row" items = "${result.rows}">
                 <tr>
                     <td><c:out value = "${row.id}"/></td>
-                    <td><c:out value = "${row.first}"/></td>
-                    <td><c:out value = "${row.last}"/></td>
-                    <td><c:out value = "${row.age}"/></td>
+                    <td><c:out value = "${row.isb}"/></td>
+                    <td><c:out value = "${row.titulo}"/></td>
+                    <td><c:out value = "${row.autor}"/></td>
                 </tr>
             </c:forEach>
         </table>
