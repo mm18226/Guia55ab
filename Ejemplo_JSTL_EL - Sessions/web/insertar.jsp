@@ -43,7 +43,7 @@
         </sql:update>
 
         <sql:query dataSource = "${fuenteDatos}" var = "result">
-            SELECT * from Libros;
+            SELECT * from libros;
         </sql:query>        
         <table border = "1" width = "100%">
             <tr>
