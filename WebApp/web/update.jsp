@@ -17,7 +17,18 @@
         <title>Libro actualizado</title>
     </head>
     <body>
-        
+        <c:if test="${sessionScope.nivel eq 1 or sessionScope.nivel eq 0 or sessionScope.nivel eq -1 or sessionScope.nivel eq null}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="nivel"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:if>
+        <c:if test="${empty param.id}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="parametro"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:if>
         <sql:update dataSource = "${fuenteDatos}" var = "result">
             UPDATE libro SET titulo=?  WHERE  isbn=?
             <sql:param value="${param.titulo}"/>
@@ -30,8 +41,6 @@
             <c:if test="${result!=1}">
                 <c:out value="Algo ha salido mal"/>
             </c:if>
-            
-        
         <a href="index.jsp" style="font-size:0.5cm;color:green;">Volver a Inicio</a>
     </body>
 </html>

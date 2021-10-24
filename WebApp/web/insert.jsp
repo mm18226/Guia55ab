@@ -20,6 +20,23 @@
                            url = "jdbc:mariadb://localhost:3308/biblioteca"
                            user = "root"  password = ""/>
         
+        <c:if test="${sessionScope.nivel eq 2 or sessionScope.nivel eq 0 or sessionScope.nivel eq -1 or sessionScope.nivel eq null}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="nivel"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:if>
+        int isbn = Integer.parseInt(request.getParameter("isbn"));
+        String autor = request.getParameter("autor");
+        String titulo = request.getParameter("titulo");
+        String editorial = request.getParameter("editorial");
+        <h1>INSERTAR UN REGISTRO EN LA TABLA</h1>
+        <c:if test="${empty param.isbn or empty param.titulo or empty param.autor or empty param.editorial}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="parametro"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:if>
         <sql:update dataSource = "${fuenteDatos}" var = "result">
             INSERT INTO libro(isbn, titulo, autor, editorial)  VALUES (?, ?, ?, ?);
             <sql:param value="${param.isbn}"/>

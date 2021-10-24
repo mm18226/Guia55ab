@@ -14,6 +14,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Biblioteca</title>
+        <script>
+            function actualizar(id, last)
+            {
+                var nlast = prompt("Ingrese el apellido que reemplaza el actual apellido(" + last + ")");
+                location.href = "actualizar.jsp?id=" + id + "&last=" + last + "&nlast=" + nlast;
+            }
+            function eliminar(isbn)
+            {
+                alert("A continuación se eliminará el registro #"+isbn);
+                location.href = "eliminar.jsp?isbn=" + isbn;
+            }
+        </script>
     </head>
     <body>
         <h1>Mantenimiento de libros</h1>
@@ -29,9 +41,7 @@
                 <tr>
                     <td>Autor: <input type="text" name="autor" id="autorA" value="" size="50"/></td>
                 </tr>
-
                 <!--Lista para item 7-->
-
                 <tr>
                     <td>
                         Seleccione La Editorial
@@ -52,8 +62,6 @@
                     </td>
                 </tr>
                 <!--Fin de la lista-->
-
-
                 <tr>
                     <td><input  class="boton" type="SUBMIT" value="Insertar" />
                     </td>
@@ -65,7 +73,6 @@
         <sql:query dataSource="${fuenteDatos}" var="result">
             select * from libro;
         </sql:query>
-            
             <table border="1" width="75%" align="center"> 
                 <thead>
                     <tr>

@@ -17,7 +17,18 @@
         <title>Actualizar libro</title>
     </head>
     <body>
-        
+        <c:if test="${sessionScope.nivel eq 1 or sessionScope.nivel eq 0 or sessionScope.nivel eq -1 or sessionScope.nivel eq null}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="nivel"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:if>
+        <c:if test="${empty param.id}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="parametro"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:if>
         <c:set var="isbn" value="${param.isbn}"/>
         <c:set var="titulo" value="${param.titulo}"/>
         <c:set var="autor" value="${param.autor}"/>
