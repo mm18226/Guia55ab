@@ -14,7 +14,10 @@
                 </c:when>
                 <c:when test="${param.tipo eq 'parametro'}">
                     Error, intento de ejecutar una jsp, sin proporcionar los parametros necesarios
-                </c:when>                
+                </c:when>  
+                <c:when test="${param.tipo eq 'nivel'}">
+                    Error, intento realizar una funcion para un usuario sin dichos oermisos
+                </c:when>            
             </c:choose>
   
         </h1>
