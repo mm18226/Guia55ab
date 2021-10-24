@@ -25,6 +25,12 @@
         <h1>ACTUALIZAR UN REGISTRO DE LA TABLA</h1>
         <p style="color:blue;font-size: 7mm;">
             A continuación se cambia al registro ${param.id} el titulo ${param.titulo} por este otro: ${param.ntitulo}</p>
+        <c:if test="${sessionScope.nivel eq 1 or sessionScope.nivel eq 0 or sessionScope.nivel eq -1 or sessionScope.nivel eq null}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="nivel"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:if>
         <c:if test="${empty param.id or empty param.titulo or empty param.ntitulo}">
             <c:redirect url="error.jsp">
                 <c:param name="tipo" value="parametro"/>

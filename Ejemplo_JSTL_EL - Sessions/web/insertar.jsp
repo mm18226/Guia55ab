@@ -19,6 +19,16 @@
     <body>
         <%@ include file="header.jsp" %>
         <h1>INSERTAR UN REGISTRO EN LA TABLA</h1>
+        <c:if test="${sessionScope.nivel eq 2 or sessionScope.nivel eq 0 or sessionScope.nivel eq -1 or sessionScope.nivel eq null}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="nivel"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:if>
+        int isbn = Integer.parseInt(request.getParameter("isbn"));
+        String autor = request.getParameter("autor");
+        String titulo = request.getParameter("titulo");
+        String editorial = request.getParameter("editorial");
         <c:if test="${empty param.isb or empty param.titulo or empty param.autor}">
             <c:redirect url="error.jsp">
                 <c:param name="tipo" value="parametro"/>

@@ -22,6 +22,12 @@
     <body>
         <%@ include file="header.jsp" %>
         <h1>ELIMINAR UN REGISTRO DE LA TABLA</h1>
+        <c:if test="${sessionScope.nivel eq 1 or sessionScope.nivel eq 0 or sessionScope.nivel eq -1 or sessionScope.nivel eq null}">
+            <c:redirect url="error.jsp">
+                <c:param name="tipo" value="nivel"/>
+                <c:param name="destino" value="index.jsp"/>
+            </c:redirect>
+        </c:if>
         <c:if test="${empty param.id}">
             <c:redirect url="error.jsp">
                 <c:param name="tipo" value="parametro"/>
